@@ -22,20 +22,39 @@ public class ReverseStack {
 
     /*
     insert() will take the elements from reverseStack() and change it's original order into reverse order
-    Ex. Held order: {1, 2, 3, 4}
-            The same order taken in from reverseStack()
-        Reversed: {4, 3, 2, 1}
-            Inserts the first element if the array is empty. Holds each element till the end of the stack.
      */
     public static void insert(int hold, Stack<Integer> stack){
         if(stack.isEmpty()){
             stack.push(hold);               //if the stack is empty, push as the first element
-        }else {                             //if the stack is not empty
-            int holdAgain = stack.peek();   //if all the elements are pushed, stack will be in the same order
-            stack.pop();                    //need to do something like in reverseStack() to order correctly
+        }else{                              //if the stack is not empty
 
-            insert(hold, stack);            //place the held element at the bottom (recursive)
+            int holdAgain = stack.peek();   //hold the last element to get pushed (in insert())
+
+            stack.pop();                    //remove the element that was stored
+
+            insert(hold, stack);            //hold each element in reverse order then push(recursive)
             stack.push(holdAgain);          //place the original element above the held element
         }
     }
+
+    /*
+    Rough Diagram:
+
+    (reverseStack phase)
+    Original: {1, 2, 3, 4}
+                1st hold: 4
+                2nd hold: 3
+                3rd hold: 2
+                4th hold: 1
+
+    (insert phase)
+            {1}
+            1 popped and held, 2 is on hold
+            {3}
+            3 is popped and held, 4 is on hold
+            {4}
+            {4, 3}
+            {4, 3, 2}
+            {4, 3, 2, 1} Array is reversed
+     */
 }
