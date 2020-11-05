@@ -70,5 +70,20 @@ public class SingleLinkedList {
     // reverse the linked list RECURSIVELY
     public void reverse() {
         // homework
+        if(this.getSize() <= 1){        //if the array has 0 or 1 element (already reversed)
+            return;                     //exit
+        }
+
+        /*ListNode previous;
+        if (this.head.next != null) {   //if the next head is not null  p->c->n
+            previous = head;            //previous is current           c->c->n
+            this.head = this.head.next; //current is next               c->n->n
+            reverse();                  //recursive call
+        }else{                          //if the end is met, exit
+            return;
+        }
+
+        previous.next = this.head.next; //current is next               c->n->n
+        this.head.next = previous;      //next is previous              c->n->p*/
     }
 }
