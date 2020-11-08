@@ -8,7 +8,7 @@ public class Problem3 {
     public static void printListInReverse(ListNode list, PrintStream print) {
         // homework
         if (list == null || list.next == null) {        //if the array has 0 or 1 element (already reversed)
-            print.print("");                     //exit
+            print.print("");                            //exit
             return;
         }
 

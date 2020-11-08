@@ -30,18 +30,18 @@ public class SortList {
         ListNode fast = head;   //fast pointer - moves at twice the speed as slow
 
         while(fast != null && fast.next != null){
-            fast = fast.next;
-            if(fast.next == null)
+            fast = fast.next;       //move fast pointer by 1
+            if(fast.next == null)   //check if next is null, if so, break
                 break;
-            fast = fast.next;
-            if(fast.next == null)
+            fast = fast.next;       //move fast pointer by 1
+            if(fast.next == null)   //check if next is null, if so, break
                 break;
-            head = head.next;
+            head = head.next;       //move head (slow) pointer by 1
         }
 
-        ListNode half = head.next;
-        head.next = null;
-        return half;
+        ListNode half = head.next;  //start of the half is next slow pointer
+        head.next = null;           //remove link between lists
+        return half;                //return half of the list
     }
 
     public static ListNode mergeLists(ListNode list1, ListNode list2) {
