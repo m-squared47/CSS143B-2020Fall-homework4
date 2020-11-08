@@ -8,7 +8,8 @@ public class Problem3 {
     public static void printListInReverse(ListNode list, PrintStream print) {
         // homework
         if(list == null){               //if empty
-            print.print(0);
+            String empty = "[";
+            print.print(empty.replace("[", ""));
             return;
         }
 
