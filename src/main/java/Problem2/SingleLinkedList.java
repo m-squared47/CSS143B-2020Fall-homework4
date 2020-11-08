@@ -70,27 +70,22 @@ public class SingleLinkedList {
     // reverse the linked list RECURSIVELY
     public void reverse() {
         // homework
-        System.out.println(head.val);
-        if(this.getSize() <= 1){        //if the array has 0 or 1 element (already reversed)
+        if (head.next == null || head.next.next == null) {        //if the array has 0 or 1 element (already reversed)
             return;                     //exit
         }
-        reverseList(this.head);         //reverse list from head point
+        head.next = reverseList(head.next);         //reverse list from head point
     }
 
-    private ListNode reverseList(ListNode node){
+    private ListNode reverseList(ListNode node) {
         //exit case
-        if(node.next == null){      //if head points to null
-            this.head = node;       //head = current
-            return node;            //return current
+        if (node == null || node.next == null) {     //if 0 or 1 element or last in list
+            return node;                            //return current node
         }
-                                                                                              //assume {1>2>3>null}
-        ListNode hold = reverseList(node.next);     //recursive case (if next head isn't null)  head = 3
-        hold.next = node;                           //previous' next is current                 3 -> 2
-        node.next = null;                           //current's next is null                    3 -> 2 -> null
-        return node;                                //return current                            return 2 -> null
-    }                                                                                         //continued...
-}                                                                                             //2 -> null
-                                                                                              //2 -> 1
-                                                                                              //2 -> 1 -> null
-                                                                                              //return 1 -> null
-                                                                            //reversed: head -> 3 -> 2 -> 1 -> null
+
+        ListNode nextNode = node.next;             //store next node
+        node.next = null;                          //next node is now null
+        ListNode hold = reverseList(nextNode);     //reverse the rest of the list (if next head isn't null)
+        nextNode.next = node;                      //point the next node to the current node (reverse!)
+        return hold;                               //return reversed segment (starting at the last element in the list)
+    }
+}
