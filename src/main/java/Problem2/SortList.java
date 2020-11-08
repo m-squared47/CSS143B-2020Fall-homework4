@@ -19,17 +19,29 @@ public class SortList {
     public static ListNode findMidAndBreak(ListNode head) {
         // homework
         //divide phase
-        int size = getSize(head);              //size of the list (helper function)
-        int mid = size / 2;                    //middle index of the list
-
-        for(int i = 1; i < mid; i++){
-            head = head.next;                   //find the middle
+        if(head == null){       //if list is empty
+            return null;
         }
 
-        ListNode half = head.next;  //second half
-        head.next = null;           //remove the link between lists
+        if(head.next == null)   //if only 1 element, return current head
+            return head.next;
 
-        return half;                //sort second half
+                                //slow pointer - moves at a normal speed (this is a hold variable)
+        ListNode fast = head;   //fast pointer - moves at twice the speed as slow
+
+        while(fast != null && fast.next != null){
+            fast = fast.next;
+            if(fast.next == null)
+                break;
+            fast = fast.next;
+            if(fast.next == null)
+                break;
+            head = head.next;
+        }
+
+        ListNode half = head.next;
+        head.next = null;
+        return half;
     }
 
     public static ListNode mergeLists(ListNode list1, ListNode list2) {
